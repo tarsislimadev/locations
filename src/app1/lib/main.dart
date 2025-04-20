@@ -3,6 +3,12 @@ import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(MyApp());
 
+class LocationResult {
+  final String position;
+
+  LocationResult(this.position);
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(home: NetworkListScreen());
@@ -14,7 +20,7 @@ class NetworkListScreen extends StatefulWidget {
 }
 
 class _NetworkListScreenState extends State<NetworkListScreen> {
-  List<WifiResult> _locations = [];
+  List<LocationResult> _locations = [];
 
   @override
   void initState() {
@@ -26,7 +32,7 @@ class _NetworkListScreenState extends State<NetworkListScreen> {
     // PermissionStatus status = await Permission.locationWhenInUse.request();
 
     // if (status.isGranted) {
-      // List<WifiResult> networks = await Wifi.list('');
+      // List<LocationResult> networks = await Wifi.list('');
       setState(() { _locations = []; });
     // }
   }
