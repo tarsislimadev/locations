@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wifi/wifi.dart';
-import 'package:wifi_iot/wifi_iot.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(MyApp());
@@ -16,7 +14,7 @@ class NetworkListScreen extends StatefulWidget {
 }
 
 class _NetworkListScreenState extends State<NetworkListScreen> {
-  List<WifiResult> _networks = [];
+  List<WifiResult> _locations = [];
 
   @override
   void initState() {
@@ -25,44 +23,32 @@ class _NetworkListScreenState extends State<NetworkListScreen> {
   }
 
   Future<void> _fetchNetworks() async {
-    PermissionStatus status = await Permission.locationWhenInUse.request();
+    // PermissionStatus status = await Permission.locationWhenInUse.request();
 
     if (status.isGranted) {
-      List<WifiResult> networks = await Wifi.list('');
-      setState(() { _networks = networks; });
+      // List<WifiResult> networks = await Wifi.list('');
+      setState(() { _locations = []; });
     }
   }
 
-  void _createHotspot(String _ssid) async {
-    try {
-      await Wifi.createHotspot(
-        ssid: _ssid,
-        password: "abc123",
-      );
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Hotspot created successfully')),
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to create hotspot: $e')),
-      );
-    }
+  void _shareLocation(String _ssid) async {
+    // share clicked location with other apps
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Networks List')),
-      body: _networks.isEmpty
+      appBar: AppBar(title: Text('Locations v1')),
+      body: _locations.isEmpty
           ? Center(child: ElevatedButton(
                 onPressed: _fetchNetworks,
                 child: Text('No records'),
               ))
           : ListView.builder(
-              itemCount: _networks.length,
+              itemCount: _locations.length,
               itemBuilder: (context, index) => ElevatedButton(
-                onPressed: () => _createHotspot(_networks[index].ssid),
-                child: Text('Create Hotspot' + _networks[index].ssid),
+                onPressed: () => _shareLocation(_locations[index].ssid),
+                child: Text('Location: ' + _locations[index].ssid),
               ),
           )
     );
