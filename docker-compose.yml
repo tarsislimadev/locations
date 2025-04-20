@@ -1,5 +1,5 @@
 services:
   app:
-    build: './src/app1'
+    build: './src/app'
     volumes:
-      - './src/app1:/app'
+      - './src/app:/app'
