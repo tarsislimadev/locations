@@ -18,7 +18,7 @@ jobs:
     - name: flutter version
       run: . ./env/flutter.version.sh
 
-    - name: build android app file
+    - name: build apk file
       run: . ./env/flutter.apk.sh
 
     - name: github release
