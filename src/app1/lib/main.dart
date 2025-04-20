@@ -37,7 +37,7 @@ class _NetworkListScreenState extends State<NetworkListScreen> {
     // }
   }
 
-  void _shareLocation(String _ssid) async {
+  void _shareLocation(String _position) async {
     // share clicked location with other apps
   }
 
@@ -53,8 +53,8 @@ class _NetworkListScreenState extends State<NetworkListScreen> {
           : ListView.builder(
               itemCount: _locations.length,
               itemBuilder: (context, index) => ElevatedButton(
-                onPressed: () => _shareLocation(_locations[index].ssid),
-                child: Text('Location: ' + _locations[index].ssid),
+                onPressed: () => _shareLocation(_locations[index].position),
+                child: Text('Location: ' + _locations[index].position),
               ),
           )
     );
