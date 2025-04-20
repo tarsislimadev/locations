@@ -22,6 +22,6 @@ jobs:
       run: . ./env/apk.sh
 
     - name: Create release
-      run: find -name '*.apk' # gh release create v$( date +%Y%m%d%H%M ) ./src/app/build/app/outputs/flutter-apk/app-release.apk
+      run: gh release create v$( date +%Y%m%d%H%M ) ./src/app/build/app/outputs/flutter-apk/app-release.apk
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
