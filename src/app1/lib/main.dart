@@ -25,10 +25,10 @@ class _NetworkListScreenState extends State<NetworkListScreen> {
   Future<void> _fetchNetworks() async {
     // PermissionStatus status = await Permission.locationWhenInUse.request();
 
-    if (status.isGranted) {
+    // if (status.isGranted) {
       // List<WifiResult> networks = await Wifi.list('');
       setState(() { _locations = []; });
-    }
+    // }
   }
 
   void _shareLocation(String _ssid) async {
