@@ -1,4 +1,4 @@
-package com.example.somenet
+package com.example.locations
 
 import io.flutter.embedding.android.FlutterActivity
 
